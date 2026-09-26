@@ -1,10 +1,13 @@
 import string
 
 def safe_open_file(file_name, mode):
-    # ЗАВДАННЯ ДЛЯ ВОВИ:
-    # Реалізувати відкриття файлу за допомогою блоку try-except.
-    # Обробити помилки відкриття файлу.
-    return open(file_name, mode, encoding='utf-8')
+        try:
+            file = open(file_name, mode, encoding='utf-8')
+        except Exception as e:
+            print(f"Помилка: файл {file_name} не вдалося відкрити! Деталі: {e}")
+            return None
+        else:
+            return file
 
 def create_initial_file(file_name):
     # Функція створює файл TF13_1 із символьними рядками різної довжини.
