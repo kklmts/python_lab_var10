@@ -38,9 +38,13 @@ def process_vowels(input_file, output_file):
         print("Слова на голосну літеру успішно записано у файл.\n")
 
 def print_file_content(file_name):
-    # ЗАВДАННЯ ДЛЯ КОЛІ:
-    # Прочитати вміст file_name і вивести його в консоль по рядках.
-    pass
+    file = safe_open_file(file_name, 'r')
+    if file is not None:
+        print(f"--- Вміст файлу {file_name} ---")
+        for line in file:
+            print(line.strip())
+        file.close()
+        print("---------------------------------\n")
 
 if __name__ == "__main__":
     file1 = "TF13_1.txt"
@@ -48,4 +52,4 @@ if __name__ == "__main__":
 
     create_initial_file(file1)
     process_vowels(file1, file2)
-    # print_file_content(file2)     # Розкоментувати після виконання Колею
+    print_file_content(file2)
