@@ -19,11 +19,23 @@ def create_initial_file(file_name):
     print(f"Файл {file_name} успішно створено.\n")
 
 def process_vowels(input_file, output_file):
-    # ЗАВДАННЯ ДЛЯ ОЛІ:
-    # Прочитати вміст input_file, розбити на слова.
-    # Очистити слова від розділових знаків.
-    # Знайти слова, які починаються на голосну літеру, і записати їх у output_file.
-    pass
+    import string
+    vowels = tuple("aeiouyаеєиіїоуюя")
+
+    file_in = safe_open_file(input_file, 'r')
+    file_out = safe_open_file(output_file, 'w')
+
+    if file_in is not None and file_out is not None:
+        for line in file_in:
+            words = line.split()
+            for word in words:
+                clean_word = word.strip(string.punctuation)
+                if clean_word and clean_word.lower().startswith(vowels):
+                    file_out.write(clean_word + '\n')
+
+        file_in.close()
+        file_out.close()
+        print("Слова на голосну літеру успішно записано у файл.\n")
 
 def print_file_content(file_name):
     # ЗАВДАННЯ ДЛЯ КОЛІ:
@@ -35,5 +47,5 @@ if __name__ == "__main__":
     file2 = "TF13_2.txt"
 
     create_initial_file(file1)
-    # process_vowels(file1, file2)  # Розкоментувати після виконання Олею
+    process_vowels(file1, file2)
     # print_file_content(file2)     # Розкоментувати після виконання Колею
